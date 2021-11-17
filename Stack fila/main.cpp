@@ -41,57 +41,34 @@ public:
 
 
 void crawler(Elemento* ponteiro);
-void crawlerDeleter(Elemento* ponteiro);
+void crawlerDeleter(Elemento* &ponteiro);
 
 int main(void){
     //Criamos uma instancia da classe intanciador
     Instanciador instanciador;
 
-    //Elemento* pilha = new Elemento("pilha", NULL);
+    //-----Funcionamento da pilha em ação-----
 
-    //Elemento* pilha = instanciador.instanciaPilha();
+    // Elemento* pilha = instanciador.instanciaPilha();
 
     // instanciador.push(pilha, "p1");
     // instanciador.push(pilha, "p2");
     // instanciador.push(pilha, "p3");
 
-    //push(pilha, "p1");
-    //push(pilha, "p2");
-    //push(pilha, "p3");
-    
-    //crawler(pilha);
+    // crawler(pilha);
 
-    //pop(pilha);
-    
-    //instanciador.pop(pilha);
+    // instanciador.pop(pilha);
 
-    //crawler(pilha);
+    // crawler(pilha);
 
-    //crawlerDeleter(pilha);
+    // crawlerDeleter(pilha);
 
-    Elemento* fila = new Elemento("fila", NULL);
+    //-----Fim do funcionamento da pilha-----
 
-
-
-
-
+    //Elemento* fila = new Elemento("fila", NULL);
 
     return 0;
 }
-
-//inserir (&fila, nome)
-// novo elemento = new elemento(nome)
-// if fila -> proximo == null:
-//      fila -> proximo = novo elemento
-//      novo elemento -> elemento anterior = fila
-//      fila = novo elemento
-
-
-
-//pop_fila(fila)
-// tem que tirar o primeiro, mas como saber qual é o primeiro?
-// if fila -> anterior 
-
 
 
 //debug
@@ -103,7 +80,7 @@ void crawler(Elemento* ponteiro){
     }
 }
 
-void crawlerDeleter(Elemento* ponteiro){
+void crawlerDeleter(Elemento* &ponteiro){
     std::cout <<ponteiro->nome <<"\n";
     
     if(ponteiro->proximoElemento != NULL)
