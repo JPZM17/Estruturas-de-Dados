@@ -93,9 +93,51 @@ void Leitor(Elemento* ponteiro);
 void LeitorDeleter(Elemento* &ponteiro);
 
 int main(void){
+    //Criando uma instancia do instanciador
+    Instanciador Instanciador;
 
+    //-----Inicio do funcionamento da pilha-----
+    Pilha pilha = Instanciador.InstanciaPilha();
 
+    pilha.Push("p1");
+    pilha.Push("p2");
+    pilha.Push("p3");
+    pilha.Push("p4");
 
+    Leitor(pilha.topo);
+
+    pilha.Pop();
+
+    Leitor(pilha.topo);
+
+    pilha.Pop();
+
+    Leitor(pilha.topo);
+
+    LeitorDeleter(pilha.topo);
+    //-----Fim do funcionamento da pilha-----
+
+    //-----Inicio do funcionamento da fila-----
+    Fila fila = Instanciador.InstanciaFila();
+
+    fila.Entrar("elemento 1");
+    fila.Entrar("elemento 2");
+    fila.Entrar("elemento 3");
+    fila.Entrar("elemento 4");
+
+    Leitor(fila.cabeca);
+
+    fila.Sair();
+
+    Leitor(fila.cabeca);
+
+    fila.Sair();
+
+    Leitor(fila.cabeca);
+
+    LeitorDeleter(fila.cabeca);
+
+    //-----Fim do funcionamento da fila-----
     return 0;
 }
 
