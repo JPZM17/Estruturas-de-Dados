@@ -105,8 +105,6 @@ int main(void){
 
     //-----Fim do funcionamento da pilha-----
 
-    //Elemento* fila = new Elemento("fila", NULL);
-
     //-----Inicio do funcionamento da fila-----
 
     // Fila fila = instanciador.InstanciaFila();
