@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-//elemento que vai ser instanciado e colocado na fila
+//elemento que vai ser instanciado e colocado na fila e na pilha
 class Elemento{
 
 public: 
@@ -47,7 +47,7 @@ public:
     }
 
 };
-
+//classe usada para instanciar a fila e a pilha, assim como também operar a pilha.
 class Instanciador{
 
 public:
@@ -109,19 +109,19 @@ int main(void){
 
     //-----Inicio do funcionamento da fila-----
 
-    Fila fila = instanciador.InstanciaFila();
+    // Fila fila = instanciador.InstanciaFila();
 
-    fila.Entrar("elemento1");
-    fila.Entrar("elemento2");
-    fila.Entrar("elemento3");
+    // fila.Entrar("elemento1");
+    // fila.Entrar("elemento2");
+    // fila.Entrar("elemento3");
 
-    Crawler(fila.cabeca);
+    // Crawler(fila.cabeca);
 
-    fila.Sair();
+    // fila.Sair();
 
-    Crawler(fila.cabeca);
+    // Crawler(fila.cabeca);
 
-    CrawlerDeleter(fila.cabeca);
+    // CrawlerDeleter(fila.cabeca);
 
     //-----Fim do funcionamento da fila-----
 
