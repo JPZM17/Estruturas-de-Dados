@@ -7,30 +7,71 @@ class Elemento{
 public: 
     std::string nome;
     Elemento* proximoElemento;
-    Elemento(std::string nome_pessoa, Elemento* proximo_elemento){
+    Elemento* elementoAnterior; 
+    Elemento(std::string nome_pessoa, Elemento* proximo_elemento, Elemento* elemento_anterior){
         nome = nome_pessoa;
         proximoElemento = proximo_elemento;
+        elementoAnterior = elemento_anterior;
     }
+};
+
+class Fila{
+
+public:
+    Elemento* cabeca;
+    Elemento* cauda;
+    
+
+    void Entrar(std::string novo_nome){
+        if(cabeca == NULL)
+        {
+            Elemento* novo_elemento = new Elemento(novo_nome, NULL, NULL);
+            cabeca = novo_elemento;
+            cauda = novo_elemento; 
+        }
+        else
+        {
+            Elemento* novo_elemento = new Elemento(novo_nome, NULL, NULL);
+            cauda -> proximoElemento = novo_elemento;
+            novo_elemento -> elementoAnterior = cauda;
+            cauda = novo_elemento;
+        }
+    }
+
+    void Sair()
+    {
+        cabeca = cabeca -> proximoElemento;
+        Elemento* cabeca_velha = cabeca -> elementoAnterior;
+        cabeca -> elementoAnterior = NULL;
+        delete cabeca_velha;
+    }
+
 };
 
 class Instanciador{
 
 public:
-    Elemento* instanciaPilha(){
-        Elemento* pilha = new Elemento("pilha", NULL);
+    Elemento* InstanciaPilha(){
+        Elemento* pilha = new Elemento("pilha", NULL, NULL);
         return pilha;
     }
+
+    Fila InstanciaFila(){
+        Fila fila = Fila();
+        return fila;
+    }
+
 
 //pilha
 
     //push
-    void push(Elemento* &pilha, std::string novo_nome){
+    void Push(Elemento* &pilha, std::string novo_nome){
 
-        Elemento* elemento_novo = new Elemento(novo_nome, pilha);
+        Elemento* elemento_novo = new Elemento(novo_nome, pilha, NULL);
         pilha = elemento_novo;
     }
     //pop
-    void pop(Elemento* &pilha)
+    void Pop(Elemento* &pilha)
     {
         Elemento* topoVelho = pilha;
         pilha = topoVelho->proximoElemento;
@@ -39,9 +80,8 @@ public:
 
 };
 
-
-void crawler(Elemento* ponteiro);
-void crawlerDeleter(Elemento* &ponteiro);
+void Crawler(Elemento* ponteiro);
+void CrawlerDeleter(Elemento* &ponteiro);
 
 int main(void){
     //Criamos uma instancia da classe intanciador
@@ -49,43 +89,62 @@ int main(void){
 
     //-----Funcionamento da pilha em ação-----
 
-    // Elemento* pilha = instanciador.instanciaPilha();
+    // Elemento* pilha = instanciador.InstanciaPilha();
 
-    // instanciador.push(pilha, "p1");
-    // instanciador.push(pilha, "p2");
-    // instanciador.push(pilha, "p3");
+    // instanciador.Push(pilha, "p1");
+    // instanciador.Push(pilha, "p2");
+    // instanciador.Push(pilha, "p3");
 
-    // crawler(pilha);
+    // Crawler(pilha);
 
-    // instanciador.pop(pilha);
+    // instanciador.Pop(pilha);
 
-    // crawler(pilha);
+    // Crawler(pilha);
 
-    // crawlerDeleter(pilha);
+    // CrawlerDeleter(pilha);
 
     //-----Fim do funcionamento da pilha-----
 
     //Elemento* fila = new Elemento("fila", NULL);
 
+    //-----Inicio do funcionamento da fila-----
+
+    Fila fila = instanciador.InstanciaFila();
+
+    fila.Entrar("elemento1");
+    fila.Entrar("elemento2");
+    fila.Entrar("elemento3");
+
+    Crawler(fila.cabeca);
+
+    fila.Sair();
+
+    Crawler(fila.cabeca);
+
+    CrawlerDeleter(fila.cabeca);
+
+    //-----Fim do funcionamento da fila-----
+
     return 0;
 }
 
 
+
 //debug
-void crawler(Elemento* ponteiro){
+void Crawler(Elemento* ponteiro){
     std::cout <<ponteiro->nome <<"\n";
     if(ponteiro->proximoElemento != NULL)
     {
-       crawler(ponteiro -> proximoElemento);
+       Crawler(ponteiro -> proximoElemento);
     }
 }
 
-void crawlerDeleter(Elemento* &ponteiro){
+void CrawlerDeleter(Elemento* &ponteiro){
     std::cout <<ponteiro->nome <<"\n";
     
     if(ponteiro->proximoElemento != NULL)
     {
-       crawlerDeleter(ponteiro -> proximoElemento);
+       CrawlerDeleter(ponteiro -> proximoElemento);
     }
     delete ponteiro;
 }
